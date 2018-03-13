@@ -32,16 +32,9 @@ class hieratic::firewall (
       purge => false
     }
 
-    # Globally set firewallchains as purged by default:
+    # Only purge INPUT
     firewallchain {
-      [ "PREROUTING:mangle:IPv4",
-        "FORWARD:filter:IPv4",
-        "FORWARD:mangle:IPv4",
-        "POSTROUTING:mangle:IPv4",
-        "INPUT:filter:IPv4",
-        "OUTPUT:filter:IPv4",
-        "INPUT:mangle:IPv4",
-        "OUTPUT:mangle:IPv4", ]:
+      [ "INPUT:filter:IPv4" ]:
         purge => true
     }
     # Don't purge the fail2ban-ssh chain itself...
